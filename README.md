@@ -1,3 +1,5 @@
+# Conhecimentos necessários do Nextjs
+
 ## Rotas
 
 Todos os arquivos dentro de pages ou src/pages, tornam-se uma nova rota na aplicação, com excessão do arquivo _app e document.
