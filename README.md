@@ -1,34 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Rotas
 
-## Getting Started
+Todos os arquivos dentro de pages ou src/pages, tornam-se uma nova rota na aplicação, com excessão do arquivo _app e document.
 
-First, run the development server:
+## Estilos
+Para usar um css global, utilizar apenas .css
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Para usar um css que respeite a um escopo, utilizar o module.css
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Nos arquivos css que sejam module.css, não podemos estilizar diretamente um elemento html. Exemplo:
+- Caso queira estilizar um elemento h1, precisa colocar uma classe no elemento h1 e estilizar a classe.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Além disso, é necessário no arquivo que deseja implementar o module.css, importar com um nome. Por exemplo: import styles from "../styles/home.module.css"
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Digamos que você criou uma estilização para a classe .title dentro do arquivo home.module.css. Para dar essa classe ao elemento que deseja estilizar, se utiliza no formato javascript e não como string. Por exemplo : <h1 className={styles.title}>meu h1 estilizado</h1>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Arquivo _app
+Existe um <Component /> neste arquivo e o que ele faz é, em cada página acessada, o componente <Component /> é substituído pelo componente da página acessada.
 
-## Learn More
+Então toda vez que uma nova rota for acessada, esta funcão do arquivo _app será executada novamente, montando novamente o componente contido nela.
 
-To learn more about Next.js, take a look at the following resources:
+## Arquivo _document
+Este arquivo funciona de forma semelhante ao arquivo _app, mas ele é carregado apenas uma única vez. É como se fosse o arquivo index.html do create-react app
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## getServerSideProps
+Quando o request a api é feito no lado do servidor e a tela é montada já com todos os dados
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## getStaticProps
+É a basicamente mesma coisa do getServerSideProps, mas ao fazer o request, ele salva os dados vindos deste request para que quando
+esta mesma tela for acessada novamente, não precise fazer um novo request a api. 
 
-## Deploy on Vercel
+Muito útil quando tem uma tela que faz um request a api e esta tela é acessada por inúmeros clientes. Para evitar inúmeros requests
+que retorna uma informação que pouco muda, usa-se o getStaticProps.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ele retorna o revalidate, que é o tempo em segundos que quer que a tela atualize os dados no próximo request.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Por exemplo:
+return {
+  props: {},
+  revalidate: 3000 -> se dois clientes acessam essa tela dentro do intervalo de 3s, eles geraram o mesmo html daquela página.
+  caso o terceiro cliente acesse a tela após os 3s, ele irá disparar um novo request que gera novamente um html da página.
+}
