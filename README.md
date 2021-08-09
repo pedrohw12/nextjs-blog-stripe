@@ -12,7 +12,7 @@ Nos arquivos css que sejam module.css, não podemos estilizar diretamente um ele
 
 Além disso, é necessário no arquivo que deseja implementar o module.css, importar com um nome. Por exemplo: import styles from "../styles/home.module.css"
 
-Digamos que você criou uma estilização para a classe .title dentro do arquivo home.module.css. Para dar essa classe ao elemento que deseja estilizar, se utiliza no formato javascript e não como string. Por exemplo : <h1 className={styles.title}>meu h1 estilizado</h1>
+Digamos que você criou uma estilização para a classe .title dentro do arquivo home.module.css. Para dar essa classe ao elemento que deseja estilizar, se utiliza no formato javascript e não como string. Por exemplo : '<h1 className={styles.title}>meu h1 estilizado</h1>'
 
 ## Arquivo _app
 Existe um <Component /> neste arquivo e o que ele faz é, em cada página acessada, o componente <Component /> é substituído pelo componente da página acessada.
