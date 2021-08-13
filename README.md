@@ -43,6 +43,19 @@ return {
   caso o terceiro cliente acesse a tela após os 3s, ele irá disparar um novo request que gera novamente um html da página.
 }
 
+Obs.: o getStaticProps não tem o req, enquanto o getServerSideProps tem
+
+Obs.: Gera a página estática durante a build.
+
+## getStaticPaths
+Só funciona em páginas com parametro, ou seja, aquelas que são tipo - [params].ts
+
+Gera a página estática no primeiro acesso aquela página e não durant a build, como é no getStaticProps
+
+Dentro dos paths, deste método, se coloca quais caminhos de rota quer que sejam gerados as páginas estáticas no primeiro acesso.
+
+Caso o array do paths fique vazio, isso quer dizer que todo conteúdo que for exibido naquela rota, será gerado de forma estática no primeiro acesso.
+
 ## Api routes
 Todos os arquivos que forem criados dentro de pages/api, serão uma nova rota de api do next. As funções criadas nas api routes são serverless, ou seja, rodam e depois morrem. O servidor não fica de pé.
 
