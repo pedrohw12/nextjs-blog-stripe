@@ -46,6 +46,8 @@ return {
 ## Api routes
 Todos os arquivos que forem criados dentro de pages/api, serão uma nova rota de api do next. As funções criadas nas api routes são serverless, ou seja, rodam e depois morrem. O servidor não fica de pé.
 
+Obs.: Pastas dentro de api que contenham um underline na frente, não são tratadas como uma rotas. Por exemplo - _lib
+
 Por exemplo, se for criado um arquivo em pages/api/users.ts, que retorna uma lista de usuários, 
 ao acessar localhost:3000/api/users, estaremos acessando a rota criada, e vendo o retorno desta lista usuários.
 
