@@ -189,3 +189,5 @@ onClick={() => signOut()}
 
 Essas informações de sessão do usuário são salvas nos cookies do navegador.
 
+## Stripe
+Depois de toda a configuração dos webhooks feita, rodar o comando stripe listen --forward-to localhost:3000/api/webhooks para escuta-los.
